@@ -3,11 +3,18 @@ package com.xs.service;
 import com.xs.dao.IUserDao;
 import com.xs.dao.User2Dao;
 import com.xs.dao.UserDao;
+import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-public class UserService {
 
-    IUserDao userDao  = new User2Dao();
+@Component
+public class UserService implements IUserService {
 
+    @Autowired
+    IUserDao userDao;
+
+    @Override
     public void getUser(){
         userDao.getUser();
     }
