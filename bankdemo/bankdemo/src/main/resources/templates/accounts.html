@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>账户管理</title>
+</head>
+<body>
+<h1>账户列表</h1>
+<table border="1">
+    <tr><th>ID</th><th>持有人</th><th>余额</th></tr>
+    <tr th:each="a : ${accounts}">
+        <td th:text="${a.id}"></td>
+        <td th:text="${a.owner}"></td>
+        <td th:text="${a.balance}"></td>
+    </tr>
+</table>
+
+<h2>新增账户</h2>
+<form method="post" action="/accounts">
+    <input name="owner" placeholder="持有人"/>
+    <input name="balance" type="number" step="0.01" placeholder="余额"/>
+    <button type="submit">创建</button>
+</form>
+</body>
+</html>
