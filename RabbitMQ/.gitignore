@@ -1,0 +1,5 @@
+# 视频
+*.mp4
+
+# 压缩包
+RabbitMQ\4、新版RabbitMQ消息队列\01.MQ基础\资料\mq.tar
