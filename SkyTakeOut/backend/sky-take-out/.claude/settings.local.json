@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell *)",
+      "Read(//d/sky-take-out/sky-server/src/main/java/com/sky/service/**)",
+      "Bash(sed -i '42s/.*/        password = DigestUtils.md5DigestAsHex\\(password.getBytes\\(\\)\\);/' EmployeeServiceImpl.java)"
+    ]
+  }
+}
