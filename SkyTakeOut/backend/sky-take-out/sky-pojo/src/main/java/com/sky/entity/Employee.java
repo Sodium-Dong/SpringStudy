@@ -33,6 +33,7 @@ public class Employee implements Serializable {
     private Integer status;
 
     //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    // 用于将输出从 20260503212200 变成 2026-05-03 21:22:00
     private LocalDateTime createTime;
 
     //@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
