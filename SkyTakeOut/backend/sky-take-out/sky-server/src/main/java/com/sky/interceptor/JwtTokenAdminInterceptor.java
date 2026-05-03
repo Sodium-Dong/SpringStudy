@@ -49,7 +49,7 @@ public class JwtTokenAdminInterceptor implements HandlerInterceptor {
             Claims claims = JwtUtil.parseJWT(jwtProperties.getAdminSecretKey(), token);
             // 从 JWT 中解析出 用户id
             Long empId = Long.valueOf(claims.get(JwtClaimsConstant.EMP_ID).toString());
-            log.info("当前员工id：", empId);
+            log.info("当前员工id："+ empId);
             // 将用户id存储到 ThreadLocal
             BaseContext.setCurrentId(empId);
             //3、通过，放行

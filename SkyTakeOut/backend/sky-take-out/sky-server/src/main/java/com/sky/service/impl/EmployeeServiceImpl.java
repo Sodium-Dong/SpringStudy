@@ -23,8 +23,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import java.time.LocalDateTime;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -113,5 +111,22 @@ public class EmployeeServiceImpl implements EmployeeService {
         List<Employee> records = page.getResult();
 
         return new PageResult(total, records);
+    }
+
+    /**
+     * 更改员工状态(启用/禁用)功能
+     * @param newStatus
+     * @param id
+     * @return
+     */
+    @Override
+    public void statusChange(Integer newStatus, Long id) {
+        // 因为还得修改 updateTime 之类的，所以最好用 employee 封装
+        Employee employee = Employee.builder()
+                .status(newStatus)
+                .id(id)
+                .build();
+
+        employeeMapper.update(employee);
     }
 }
