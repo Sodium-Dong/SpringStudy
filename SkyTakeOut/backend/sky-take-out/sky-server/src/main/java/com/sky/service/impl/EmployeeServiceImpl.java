@@ -34,6 +34,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+
     /**
      * 员工登录
      *
@@ -126,6 +127,35 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .status(newStatus)
                 .id(id)
                 .build();
+
+        employeeMapper.update(employee);
+    }
+
+    /**
+     * 根据id查员工
+     * @param id
+     * @return
+     */
+    @Override
+    public Employee getById(Long id) {
+        Employee employee = employeeMapper.getById(id);
+        // 更改密码再传回前端
+        employee.setPassword("****");
+        return employee;
+    }
+
+    /**
+     * 更改员工信息
+     * @param employeeDTO
+     */
+    @Override
+    public void update(EmployeeDTO employeeDTO) {
+        Employee employee = new Employee();
+        // 一次性把属性都复制过来
+        BeanUtils.copyProperties(employeeDTO, employee);
+
+        employee.setUpdateTime(LocalDateTime.now());
+        employee.setUpdateUser(BaseContext.getCurrentId());
 
         employeeMapper.update(employee);
     }

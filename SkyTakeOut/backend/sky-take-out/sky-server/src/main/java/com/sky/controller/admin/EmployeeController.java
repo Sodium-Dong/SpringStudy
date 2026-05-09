@@ -1,7 +1,6 @@
 package com.sky.controller.admin;
 
 import com.sky.constant.JwtClaimsConstant;
-import com.sky.constant.StatusConstant;
 import com.sky.dto.EmployeeDTO;
 import com.sky.dto.EmployeeLoginDTO;
 import com.sky.dto.EmployeePageQueryDTO;
@@ -119,6 +118,28 @@ public class EmployeeController {
         log.info("正在更改员工 {} 的状态为：{}", id, newStatus);
 
         employeeService.statusChange(newStatus,id);
+        return Result.success();
+    }
+
+    @GetMapping("/{id}")
+    @ApiOperation("根据id查员工")
+    public Result<Employee> getById(@PathVariable("id") Long id) {
+        log.info("根据id查员工，id为：{}", id);
+        Employee employee = employeeService.getById(id);
+        return Result.success(employee);
+    }
+
+    /**
+     * 更改员工信息
+     * @param employeeDTO
+     * @return
+     */
+    @PutMapping
+    @ApiOperation("更改员工信息")
+    public Result update(@RequestBody EmployeeDTO employeeDTO) {
+        log.info("正在更改员工信息：{}", employeeDTO);
+
+        employeeService.update(employeeDTO);
         return Result.success();
     }
 }
